@@ -1,15 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePlayerDto } from './dto/create-player.dto';
 import { UpdatePlayerDto } from './dto/update-player.dto';
+import { Player } from './entities/player.entity';
 
 @Injectable()
 export class PlayersService {
+
+  private deps = {
+    repository: {
+      fetchMany: () => {
+        return {
+          items: [new Player({ name: 'Some Player' })]
+        }
+      }
+    }
+  }
+
   create(createPlayerDto: CreatePlayerDto) {
     return 'This action adds a new player';
   }
 
   findAll() {
-    return `This action returns all players`;
+    const { repository } = this.deps;
+    return repository.fetchMany();
   }
 
   findOne(id: number) {
