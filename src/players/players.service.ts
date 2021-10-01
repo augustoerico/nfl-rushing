@@ -1,32 +1,19 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { CreatePlayerDto } from './dto/create-player.dto';
 import { UpdatePlayerDto } from './dto/update-player.dto';
-import { Player } from './entities/player.entity';
-import * as data from '../../rushing.json';
+import { PlayersRepository } from './players.repository';
 
 @Injectable()
-export class PlayersService implements OnModuleInit {
+export class PlayersService {
 
-  private deps: any;
-
-  onModuleInit() {
-    this.deps = {
-      repository: {
-        fetchMany: () => {
-          return {
-            items: data as any
-          }
-        }
-      }
-    }
-  }
+  constructor(private readonly repository: PlayersRepository) {}
 
   create(createPlayerDto: CreatePlayerDto) {
     return 'This action adds a new player';
   }
 
   findAll() {
-    const { repository } = this.deps;
+    const { repository } = this;
     return repository.fetchMany();
   }
 
