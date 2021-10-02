@@ -1,19 +1,20 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { Player } from './entities/player.entity';
+import { PlayerStats } from './entities/player.entity';
 import { readFileSync } from 'fs'
 import { Filter } from './entities/filter.entity';
 import { sortByYds } from './sorters';
+import { parse } from './parsers/file-to-model';
 
 @Injectable()
 export class PlayersRepository implements OnModuleInit {
-    private items: Player[];
+    private items: PlayerStats[];
 
     onModuleInit() {
         this.items = JSON
             .parse(
                 readFileSync('rushing.json').toString()
             )
-            .map((i: Player)  => ({ ...i, yds: i['Yds'] }));
+            .map(parse);
     }
 
     fetchMany(filter?: Filter) {

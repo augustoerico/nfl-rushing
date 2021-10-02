@@ -1,6 +1,6 @@
-export class Player {
+export class PlayerStats {
 
-    player: string; // "name" would fit better
+    player: string;
     team: string;
     pos: string;
     att: number;
