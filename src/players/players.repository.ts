@@ -1,13 +1,13 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { Player } from './entities/player.entity';
-import * as data from '../../rushing.json';
+import { readFileSync } from 'fs'
 
 @Injectable()
 export class PlayersRepository implements OnModuleInit {
     private items: Player[];
 
     onModuleInit() {
-        this.items = data as any;
+        this.items = JSON.parse(readFileSync('rushing.json').toString());
     }
 
     fetchMany() {
