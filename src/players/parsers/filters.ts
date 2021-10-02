@@ -20,6 +20,10 @@ const parse = (
         filter.sortBy = validateSortBy(query.sortBy);
     }
 
+    if (query.player?.length > 2) {
+        filter.player = query.player.toLowerCase();
+    }
+
     return filter;
 }
 
