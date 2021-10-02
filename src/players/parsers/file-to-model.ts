@@ -6,6 +6,9 @@ const parse = (
     const yds = typeof player['Yds'] === 'number' ?
         player['Yds'] : Number(player['Yds'].replace(',', ''));
 
+    const lng = typeof player['Lng'] === 'number' ?
+        `${player['Lng']}` : player['Lng'];
+
     return {
         player: player['Player'],
         team: player['Team'],
@@ -14,9 +17,9 @@ const parse = (
         attPerG: player['Att/G'],
         yds,
         avg: player['Avg'],
-        ydsPerG: player['ydsPerG'],
+        ydsPerG: player['Yds/G'],
         td: player['TD'],
-        lng: player['Lng'],
+        lng,
         r1st: player['1st'],
         r1stPercent: player['1st%'],
         r20Plus: player['20+'],

@@ -2,7 +2,7 @@ import { Injectable, OnModuleInit } from '@nestjs/common';
 import { PlayerStats } from './entities/player.entity';
 import { readFileSync } from 'fs'
 import { Filter } from './entities/filter.entity';
-import { sortByTd, sortByYds } from './sorters';
+import { sortByLng, sortByTd, sortByYds } from './sorters';
 import { parse } from './parsers/file-to-model';
 
 @Injectable()
@@ -39,6 +39,12 @@ export class PlayersRepository implements OnModuleInit {
                 break;
             case 'td-':
                 itemsSorted = sortByTd(items, false);
+                break;
+            case 'lng':
+                itemsSorted = sortByLng(items);
+                break;
+            case 'lng-':
+                itemsSorted = sortByLng(items, false);
                 break;
             default:
                 itemsSorted = items;
