@@ -2,7 +2,7 @@ import { Injectable, OnModuleInit } from '@nestjs/common';
 import { PlayerStats } from './entities/player.entity';
 import { readFileSync } from 'fs'
 import { Filter } from './entities/filter.entity';
-import { sortByYds } from './sorters';
+import { sortByTd, sortByYds } from './sorters';
 import { parse } from './parsers/file-to-model';
 
 @Injectable()
@@ -26,13 +26,25 @@ export class PlayersRepository implements OnModuleInit {
     fetchManyWithFilter(filter: Filter) {
         const items = Array.from(this.items);
         const { sortBy } = filter;
-        if (sortBy === 'yds') {
-            return { items: sortByYds(items) };
-        } else if (sortBy === 'yds-') {
-            return { items: sortByYds(items, false) }
-        } else {
-            return this.fetchManyWithoutFilter();
+        let itemsSorted: PlayerStats[];
+        switch (sortBy) {
+            case 'yds':
+                itemsSorted = sortByYds(items);
+                break;
+            case 'yds-':
+                itemsSorted = sortByYds(items, false);
+                break;
+            case 'td':
+                itemsSorted = sortByTd(items);
+                break;
+            case 'td-':
+                itemsSorted = sortByTd(items, false);
+                break;
+            default:
+                itemsSorted = items;
+                break;
         }
+        return { items: itemsSorted };
     }
 
     fetchManyWithoutFilter() {

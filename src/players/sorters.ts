@@ -7,4 +7,11 @@ const sortByYds = (
     return desc ? items.sort((a, b) => b.yds - a.yds) : items.sort((a, b) => a.yds - b.yds);
 }
 
-export { sortByYds };
+const sortByTd = (
+    items: PlayerStats[],
+    desc: boolean = true
+) => {
+    return desc ? items.sort((a, b) => b.td - a.td) : items.sort((a, b) => a.td - b.td);
+}
+
+export { sortByYds, sortByTd };

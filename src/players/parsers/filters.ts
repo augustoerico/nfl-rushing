@@ -4,7 +4,7 @@ const validateSortBy = (
     sortByRaw: string
 ): string | undefined => {
     const validValues = [
-        'yds', 'yds-', 'lng', 'td'
+        'yds', 'yds-', 'lng', 'td', 'td-'
     ];
     const sortBy = sortByRaw.toLowerCase();
     return validValues.includes(sortBy) ?
