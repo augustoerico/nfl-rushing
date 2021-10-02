@@ -5,10 +5,17 @@
         <title>Players</title>
     </head>
     <body>
-        <ul>
-        {{#each items }}
-            <li>{{this.player}} | {{this.yds}}</li>
-        {{/each}}
-        </ul>
+        <table>
+            <tr>
+                <th>Player</th>
+                <th>Yds</th>
+            </tr>
+            {{#each items }}
+            <tr>
+                <td>{{this.player}}</td>
+                <td>{{this.yds}}</td>
+            </tr>
+            {{/each}}
+        </table>
     </body>
 </html>
