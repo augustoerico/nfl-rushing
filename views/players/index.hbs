@@ -5,21 +5,29 @@
         <title>Players</title>
     </head>
     <body>
-        <table>
-            <tr>
-                <th>Player</th>
-                <th>Yds</th>
-                <th>TD</th>
-                <th>Lng</th>
-            </tr>
-            {{#each items }}
-            <tr>
-                <td>{{this.player}}</td>
-                <td>{{this.yds}}</td>
-                <td>{{this.td}}</td>
-                <td>{{this.lng}}</td>
-            </tr>
-            {{/each}}
-        </table>
+        <div>
+            <form method="GET">
+                <input type="text" name="player" placeholder="Player"/>
+                <input type="submit" />
+            </form>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>Player</th>
+                    <th>Yds</th>
+                    <th>TD</th>
+                    <th>Lng</th>
+                </tr>
+                {{#each items }}
+                <tr>
+                    <td>{{this.player}}</td>
+                    <td>{{this.yds}}</td>
+                    <td>{{this.td}}</td>
+                    <td>{{this.lng}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
     </body>
 </html>
