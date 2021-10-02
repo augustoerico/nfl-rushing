@@ -55,7 +55,7 @@ export class PlayersRepository implements OnModuleInit {
                 itemsSorted = items;
                 break;
         }
-        return { items: itemsSorted };
+        return { items: itemsSorted, filter: filter };
     }
 
     fetchManyWithoutFilter() {

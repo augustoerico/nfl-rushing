@@ -7,6 +7,9 @@
     <body>
         <div>
             <form method="GET">
+                {{#if filter.sortBy}}
+                    <input type="hidden" name="sortBy" value="{{filter.sortBy}}" />
+                {{/if}}
                 <input type="text" name="player" placeholder="Player"/>
                 <input type="submit" />
             </form>
