@@ -10,19 +10,26 @@
                 {{#if filter.sortBy}}
                     <input type="hidden" name="sortBy" value="{{filter.sortBy}}" />
                 {{/if}}
-                <input type="text" name="player" placeholder="Player"/>
-                <input type="submit" />
+                <input type="text" name="player" placeholder="Player" value="{{ filter.player }}"/>
+                <input type="submit" value="Filter"/>
             </form>
+        </div>
+        <div>
+            <a href="../players">Clear</a>
         </div>
         <div>
             <table>
                 <tr>
                     <th>Player</th>
                     <th>
-                        <a href="?sortBy=yds" >Yds</a>
+                        <a href="{{ links.sortBy.yds.href }}" >Yds</a>
                     </th>
-                    <th>TD</th>
-                    <th>Lng</th>
+                    <th>
+                        <a href="{{ links.sortBy.td.href }}" >TD</a>
+                    </th>
+                    <th>
+                        <a href="{{ links.sortBy.lng.href }}" >Lng</a>
+                    </th>
                 </tr>
                 {{#each items }}
                 <tr>

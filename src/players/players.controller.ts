@@ -4,6 +4,7 @@ import { CreatePlayerDto } from './dto/create-player.dto';
 import { UpdatePlayerDto } from './dto/update-player.dto';
 import { Request } from 'express';
 import { parse } from './parsers/filters';
+import { parse as parseToRespose } from './parsers/responses';
 
 @Controller('players')
 export class PlayersController {
@@ -17,9 +18,9 @@ export class PlayersController {
   @Get()
   @Render('players/index')
   findAll(@Req() request: Request) {
-    console.log(JSON.stringify(request.query));
     const filter = parse(request.query as any);
-    return this.playersService.findAll(filter);
+    const result = this.playersService.findAll(filter);
+    return parseToRespose(result);
   }
 
   @Get(':id')
