@@ -1,6 +1,7 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreatePlayerDto } from './dto/create-player.dto';
 import { UpdatePlayerDto } from './dto/update-player.dto';
+import { Filter } from './entities/filter.entity';
 import { PlayersRepository } from './players.repository';
 
 @Injectable()
@@ -12,9 +13,9 @@ export class PlayersService {
     return 'This action adds a new player';
   }
 
-  findAll() {
+  findAll(filter: Filter = undefined) {
     const { repository } = this;
-    return repository.fetchMany();
+    return repository.fetchMany(filter);
   }
 
   findOne(id: number) {
