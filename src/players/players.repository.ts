@@ -28,6 +28,8 @@ export class PlayersRepository implements OnModuleInit {
         const { sortBy } = filter;
         if (sortBy === 'yds') {
             return { items: sortByYds(items) };
+        } else if (sortBy === 'yds-') {
+            return { items: sortByYds(items, false) }
         } else {
             return this.fetchManyWithoutFilter();
         }
