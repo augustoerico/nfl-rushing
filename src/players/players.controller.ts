@@ -1,7 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Render } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Render, Req } from '@nestjs/common';
 import { PlayersService } from './players.service';
 import { CreatePlayerDto } from './dto/create-player.dto';
 import { UpdatePlayerDto } from './dto/update-player.dto';
+import { Request } from 'express';
+import { parse } from './parsers/filters';
 
 @Controller('players')
 export class PlayersController {
@@ -14,8 +16,10 @@ export class PlayersController {
 
   @Get()
   @Render('players/index')
-  findAll() {
-    return this.playersService.findAll();
+  findAll(@Req() request: Request) {
+    console.log(JSON.stringify(request.query));
+    const filter = parse(request.query as any);
+    return this.playersService.findAll(filter);
   }
 
   @Get(':id')
