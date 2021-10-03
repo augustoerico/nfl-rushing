@@ -24,8 +24,13 @@ export class PlayersRepository implements OnModuleInit {
     }
 
     fetchManyWithFilter(filter: Filter) {
-        const items = Array.from(this.items);
-        const { sortBy } = filter;
+        let items = Array.from(this.items);
+        const { player, sortBy } = filter;
+
+        if (player?.length) {
+            items = items.filter((a) => a.player.toLowerCase().indexOf(player) > -1);
+        }
+    
         let itemsSorted: PlayerStats[];
         switch (sortBy) {
             case 'yds':
@@ -50,7 +55,7 @@ export class PlayersRepository implements OnModuleInit {
                 itemsSorted = items;
                 break;
         }
-        return { items: itemsSorted };
+        return { items: itemsSorted, filter: filter };
     }
 
     fetchManyWithoutFilter() {

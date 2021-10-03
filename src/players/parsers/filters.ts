@@ -4,7 +4,7 @@ const validateSortBy = (
     sortByRaw: string
 ): string | undefined => {
     const validValues = [
-        'yds', 'yds-', 'lng', 'td', 'td-'
+        'yds', 'yds-', 'td', 'td-', 'lng', 'lng-'
     ];
     const sortBy = sortByRaw.toLowerCase();
     return validValues.includes(sortBy) ?
@@ -18,6 +18,10 @@ const parse = (
     
     if (query.sortBy) {
         filter.sortBy = validateSortBy(query.sortBy);
+    }
+
+    if (query.player?.length > 1) {
+        filter.player = query.player.toLowerCase();
     }
 
     return filter;

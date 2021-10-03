@@ -5,21 +5,41 @@
         <title>Players</title>
     </head>
     <body>
-        <table>
-            <tr>
-                <th>Player</th>
-                <th>Yds</th>
-                <th>TD</th>
-                <th>Lng</th>
-            </tr>
-            {{#each items }}
-            <tr>
-                <td>{{this.player}}</td>
-                <td>{{this.yds}}</td>
-                <td>{{this.td}}</td>
-                <td>{{this.lng}}</td>
-            </tr>
-            {{/each}}
-        </table>
+        <div>
+            <form method="GET">
+                {{#if filter.sortBy}}
+                    <input type="hidden" name="sortBy" value="{{filter.sortBy}}" />
+                {{/if}}
+                <input type="text" name="player" placeholder="Player" value="{{ filter.player }}"/>
+                <input type="submit" value="Filter"/>
+            </form>
+        </div>
+        <div>
+            <a href="../players">Clear</a>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>Player</th>
+                    <th>
+                        <a href="{{ links.sortBy.yds.href }}" >Yds</a>
+                    </th>
+                    <th>
+                        <a href="{{ links.sortBy.td.href }}" >TD</a>
+                    </th>
+                    <th>
+                        <a href="{{ links.sortBy.lng.href }}" >Lng</a>
+                    </th>
+                </tr>
+                {{#each items }}
+                <tr>
+                    <td>{{this.player}}</td>
+                    <td>{{this.yds}}</td>
+                    <td>{{this.td}}</td>
+                    <td>{{this.lng}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
     </body>
 </html>
