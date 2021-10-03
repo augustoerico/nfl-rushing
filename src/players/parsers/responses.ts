@@ -7,7 +7,8 @@ const parse = (result: { items: PlayerStats[], filter?: Filter }) => {
         items,
         filter,
         links: {
-            sortBy: getSortByHrefs(filter)
+            sortBy: getSortByHrefs(filter),
+            formats: getFormatHrefs(filter)
         }
     }
 };
@@ -76,5 +77,35 @@ const getSortByHrefs = (
 
     return sortBy;
 };
+
+const getFormatHrefs = (
+    filter?: Filter
+) => {
+    const hasPlayer = filter?.player?.length
+
+    let formats: { [k: string]: { href: string }};
+
+    if (filter.sortBy) {
+        formats = {
+            json: {
+                href: hasPlayer ? `../players.json?sortBy=${filter.sortBy}&player=${filter.player}` : `../players.json?sortBy=${filter.sortBy}`
+            },
+            csv: {
+                href: hasPlayer ? `../players.csv?sortBy=${filter.sortBy}&player=${filter.player}` : `../players.csv?sortBy=${filter.sortBy}`
+            }
+        }
+    } else {
+        formats = {
+            json: {
+                href: hasPlayer ? `../players.json?player=${filter.player}` : `../players.json`
+            },
+            csv: {
+                href: hasPlayer ? `../players.csv?player=${filter.player}` : `../players.csv`
+            }
+        }
+    }
+
+    return formats;
+}
 
 export { parse, getSortByHrefs };
