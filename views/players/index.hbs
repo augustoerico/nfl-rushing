@@ -1,48 +1,82 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Players</title>
-    </head>
-    <body>
-        <div>
-            <form method="GET">
-                {{#if filter.sortBy}}
-                    <input type="hidden" name="sortBy" value="{{filter.sortBy}}" />
-                {{/if}}
-                <input type="text" name="player" placeholder="Player" value="{{ filter.player }}"/>
-                <input type="submit" value="Filter"/>
-            </form>
-        </div>
-        <div>
-            <a href="../players">Clear</a>
-            <a href="{{ links.formats.json.href }}" download="player-stats.json">JSON</a>
-            <a href="{{ links.formats.csv.href }}" download="player-stats.csv">CSV</a>
 
+<head>
+    <meta charset="utf-8" />
+    <title>Players</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/grids-responsive-min.css" />
+</head>
+
+<body>
+    <div class="pure-g">
+        <div class="pure-u-1 pure-u-md-1-5"></div>
+        <div class="pure-u-1 pure-u-md-3-5">
+            <div class="pure-form">
+                <form method="GET">
+                    {{#if filter.sortBy}}
+                    <input type="hidden" name="sortBy" value="{{filter.sortBy}}" />
+                    {{/if}}
+                    <input type="text" name="player" placeholder="Player" value="{{ filter.player }}" />
+                    <input type="submit" class="pure-button pure-button-primary" value="Filter" />
+                </form>
+            </div>
+            <div>
+                <a href="../players">Clear</a>
+                <a href="{{ links.formats.json.href }}" download="player-stats.json">JSON</a>
+                <a href="{{ links.formats.csv.href }}" download="player-stats.csv">CSV</a>
+
+            </div>
+            <div>
+                <table class="pure-table pure-table-bordered">
+                    <thead>
+                        <th>Player</th>
+                        <th>Team</th>
+                        <th>Pos</th>
+                        <th>Att</th>
+                        <th>Att/G</th>
+                        <th>
+                            <a href="{{ links.sortBy.yds.href }}">Yds</a>
+                        </th>
+                        <th>Avg</th>
+                        <th>Yds/G</th>
+                        <th>
+                            <a href="{{ links.sortBy.td.href }}">TD</a>
+                        </th>
+                        <th>
+                            <a href="{{ links.sortBy.lng.href }}">Lng</a>
+                        </th>
+                        <th>1st</th>
+                        <th>1st%</th>
+                        <th>20+</th>
+                        <th>40+</th>
+                        <th>FUM</th>
+                    </thead>
+                    {{#each items }}
+                    <tr>
+                        <td>{{this.player}}</td>
+                        <td>{{this.team}}</td>
+                        <td>{{this.pos}}</td>
+                        <td>{{this.att}}</td>
+                        <td>{{this.attPerG}}</td>
+                        <td>{{this.yds}}</td>
+                        <td>{{this.avg}}</td>
+                        <td>{{this.ydsPerG}}</td>
+                        <td>{{this.td}}</td>
+                        <td>{{this.lng}}</td>
+                        <td>{{this.r1st}}</td>
+                        <td>{{this.r1stPercent}}</td>
+                        <td>{{this.r20Plus}}</td>
+                        <td>{{this.r40Plus}}</td>
+                        <td>{{this.fum}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+            </div>
         </div>
-        <div>
-            <table>
-                <tr>
-                    <th>Player</th>
-                    <th>
-                        <a href="{{ links.sortBy.yds.href }}" >Yds</a>
-                    </th>
-                    <th>
-                        <a href="{{ links.sortBy.td.href }}" >TD</a>
-                    </th>
-                    <th>
-                        <a href="{{ links.sortBy.lng.href }}" >Lng</a>
-                    </th>
-                </tr>
-                {{#each items }}
-                <tr>
-                    <td>{{this.player}}</td>
-                    <td>{{this.yds}}</td>
-                    <td>{{this.td}}</td>
-                    <td>{{this.lng}}</td>
-                </tr>
-                {{/each}}
-            </table>
-        </div>
-    </body>
+        <div class="pure-u-1 pure-u-md-1-5"></div>
+    </div>
+</body>
+
 </html>
