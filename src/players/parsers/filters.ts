@@ -12,19 +12,19 @@ const validateSortBy = (
 }
 
 const parse = (
-    query: { [k: string]: string }
+    query?: { [k: string]: string }
 ): Filter => {
     const filter: Filter = {};
     
-    if (query.sortBy) {
+    if (query?.sortBy) {
         filter.sortBy = validateSortBy(query.sortBy);
     }
 
-    if (query.player?.length > 1) {
+    if (query?.player?.length > 1) {
         filter.player = query.player.toLowerCase();
     }
 
     return filter;
 }
 
-export { parse };
+export { parse, validateSortBy };
