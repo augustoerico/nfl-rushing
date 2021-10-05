@@ -1,4 +1,4 @@
-import { getSortByHrefs } from "./responses";
+import { getFormatHrefs, getSortByHrefs } from "./responses";
 
 describe('PlayerStats > Responses', () => {
     describe('SortBy hrefs - no player filter', () => {
@@ -100,6 +100,76 @@ describe('PlayerStats > Responses', () => {
             ]);
         });
     });
-    // describe('Format hrefs', () => {
-    // });
-})
+
+    describe('Format hrefs', () => {
+        const defaultFormatHrefs = {
+            json: {
+                href: '../players.json'
+            },
+            csv: {
+                href: '../players.csv'
+            }
+        };
+
+        it('should return the default hrefs for empty and undefined filters', () => {
+            // given
+            const filters = [{}, undefined];
+
+            // when
+            const results = filters.map(getFormatHrefs);
+
+            // then
+            expect(results).toEqual([defaultFormatHrefs, defaultFormatHrefs]);
+        });
+
+        it('should return hrefs for formats', () => {
+            // given
+            const filters = [
+                { sortBy: 'yds' },
+                { sortBy: 'yds-' },
+                { sortBy: 'td' },
+                { sortBy: 'td-' },
+                { sortBy: 'lng' },
+                { sortBy: 'lng-' }
+            ];
+
+            // when
+            const results = filters.map(getFormatHrefs);
+
+            // then
+            expect(results).toEqual([
+                { csv: { href: '../players.csv?sortBy=yds' }, json: { href: '../players.json?sortBy=yds' }},
+                { csv: { href: '../players.csv?sortBy=yds-' }, json: { href: '../players.json?sortBy=yds-' }},
+                { csv: { href: '../players.csv?sortBy=td' }, json: { href: '../players.json?sortBy=td' }},
+                { csv: { href: '../players.csv?sortBy=td-' }, json: { href: '../players.json?sortBy=td-' }},
+                { csv: { href: '../players.csv?sortBy=lng' }, json: { href: '../players.json?sortBy=lng' }},
+                { csv: { href: '../players.csv?sortBy=lng-' }, json: { href: '../players.json?sortBy=lng-' }}
+            ]);
+        });
+
+        it('should return href for formats given player filter', () => {
+            // given
+            const filters = [
+                { sortBy: 'yds', player: 'ark' },
+                { sortBy: 'yds-', player: 'ark' },
+                { sortBy: 'td', player: 'ark' },
+                { sortBy: 'td-', player: 'ark' },
+                { sortBy: 'lng', player: 'ark' },
+                { sortBy: 'lng-', player: 'ark' }
+            ];
+
+            // when
+            const results = filters.map(getFormatHrefs);
+
+            // then
+            expect(results).toEqual([
+                { csv: { href: '../players.csv?sortBy=yds&player=ark' }, json: { href: '../players.json?sortBy=yds&player=ark' }},
+                { csv: { href: '../players.csv?sortBy=yds-&player=ark' }, json: { href: '../players.json?sortBy=yds-&player=ark' }},
+                { csv: { href: '../players.csv?sortBy=td&player=ark' }, json: { href: '../players.json?sortBy=td&player=ark' }},
+                { csv: { href: '../players.csv?sortBy=td-&player=ark' }, json: { href: '../players.json?sortBy=td-&player=ark' }},
+                { csv: { href: '../players.csv?sortBy=lng&player=ark' }, json: { href: '../players.json?sortBy=lng&player=ark' }},
+                { csv: { href: '../players.csv?sortBy=lng-&player=ark' }, json: { href: '../players.json?sortBy=lng-&player=ark' }}
+            ]);
+        });
+    });
+});

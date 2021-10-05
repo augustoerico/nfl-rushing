@@ -1,6 +1,7 @@
 import { Filter } from "../entities/filter.entity"
 import { PlayerStats } from "../entities/player.entity"
 
+// istanbul ignore next: zero-logic function
 const parse = (result: { items: PlayerStats[], filter?: Filter }) => {
     const { items, filter } = result;
     return {
@@ -85,7 +86,7 @@ const getFormatHrefs = (
 
     let formats: { [k: string]: { href: string }};
 
-    if (filter.sortBy) {
+    if (filter?.sortBy) {
         formats = {
             json: {
                 href: hasPlayer ? `../players.json?sortBy=${filter.sortBy}&player=${filter.player}` : `../players.json?sortBy=${filter.sortBy}`
@@ -108,4 +109,4 @@ const getFormatHrefs = (
     return formats;
 }
 
-export { parse, getSortByHrefs };
+export { parse, getSortByHrefs, getFormatHrefs };
