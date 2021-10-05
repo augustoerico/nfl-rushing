@@ -7,7 +7,7 @@ export class PlayersService {
 
   constructor(private readonly repository: PlayersRepository) {}
 
-  findAll(filter: Filter = undefined) {
+  readMany(filter: Filter = undefined) {
     const { repository } = this;
     return repository.fetchMany(filter);
   }

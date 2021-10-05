@@ -11,7 +11,7 @@ export class PlayersController {
 
   @Get()
   @Render('players/index')
-  findAll(@Req() request: Request) {
+  readMany(@Req() request: Request) {
     return this.doReadMany(request);
   }
 
@@ -22,14 +22,13 @@ export class PlayersController {
 
   @Get('?.csv')
   readManyCsv(@Req() request: Request) {
-    const opts = { fields: [ 'player', 'yds', 'td', 'lng' ] };
     const result = this.doReadMany(request);
-    return parseToCsv(result.items, opts);
+    return parseToCsv(result.items);
   }
 
   doReadMany(request: Request) {
     const filter = parse(request.query as any);
-    const result = this.playersService.findAll(filter);
+    const result = this.playersService.readMany(filter);
     return parseToRespose(result);
   }
 }
