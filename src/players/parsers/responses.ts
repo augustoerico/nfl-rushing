@@ -71,7 +71,7 @@ const getSortByHrefs = (
                 lng: {
                     href: hasPlayer ? `?sortBy=lng&player=${filter.player}` : '?sortBy=lng'
                 }
-            }
+            };
             break;
     }
 

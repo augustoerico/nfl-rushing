@@ -89,5 +89,19 @@ describe('PlayerStats > Filter', () => {
             // then
             expect(result).toEqual({ player: 'ark', sortBy: 'lng-' });
         });
+
+        it('should return a valid filter - player case insensitive', () => {
+            // given
+            const query = {
+                player: 'ARk',
+                sortBy: 'lNg-'
+            };
+
+            // when
+            const result = parse(query);
+
+            // then
+            expect(result).toEqual({ player: 'ark', sortBy: 'lng-' });
+        });
     });
 });
