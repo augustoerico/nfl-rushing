@@ -1,38 +1,60 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# theScore "the Rush" Interview Challenge
+At theScore, we are always looking for intelligent, resourceful, full-stack developers to join our growing team. To help us evaluate new talent, we have created this take-home interview question. This question should take you no more than a few hours.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+**All candidates must complete this before the possibility of an in-person interview. During the in-person interview, your submitted project will be used as the base for further extensions.**
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### Why a take-home challenge?
+In-person coding interviews can be stressful and can hide some people's full potential. A take-home gives you a chance work in a less stressful environment and showcase your talent.
 
-## Description
+We want you to be at your best and most comfortable.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### A bit about our tech stack
+As outlined in our job description, you will come across technologies which include a server-side web framework (like Elixir/Phoenix, Ruby on Rails or a modern Javascript framework) and a front-end Javascript framework (like ReactJS)
 
-## Installation
+### Challenge Background
+We have sets of records representing football players' rushing statistics. All records have the following attributes:
+* `Player` (Player's name)
+* `Team` (Player's team abbreviation)
+* `Pos` (Player's postion)
+* `Att/G` (Rushing Attempts Per Game Average)
+* `Att` (Rushing Attempts)
+* `Yds` (Total Rushing Yards)
+* `Avg` (Rushing Average Yards Per Attempt)
+* `Yds/G` (Rushing Yards Per Game)
+* `TD` (Total Rushing Touchdowns)
+* `Lng` (Longest Rush -- a `T` represents a touchdown occurred)
+* `1st` (Rushing First Downs)
+* `1st%` (Rushing First Down Percentage)
+* `20+` (Rushing 20+ Yards Each)
+* `40+` (Rushing 40+ Yards Each)
+* `FUM` (Rushing Fumbles)
+
+In this repo is a sample data file [`rushing.json`](/rushing.json).
+
+##### Challenge Requirements
+1. Create a web app. This must be able to do the following steps
+    1. Create a webpage which displays a table with the contents of [`rushing.json`](/rushing.json)
+    2. The user should be able to sort the players by _Total Rushing Yards_, _Longest Rush_ and _Total Rushing Touchdowns_
+    3. The user should be able to filter by the player's name
+    4. The user should be able to download the sorted data as a CSV, as well as a filtered subset
+    
+2. The system should be able to potentially support larger sets of data on the order of 10k records.
+
+3. Update the section `Installation and running this solution` in the README file explaining how to run your code
+
+### Solution
+
+#### Introduction
+
+This solution was built using the NestJS framework.
+
+#### Installation
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+#### Running the app
 
 ```bash
 # development
@@ -45,7 +67,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+#### Test
 
 ```bash
 # unit tests
@@ -57,17 +79,3 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).

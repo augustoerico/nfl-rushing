@@ -15,10 +15,23 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer())
+  it('should redirect "/" to "/players"', () => {
+    // given
+    const httpServer = app.getHttpServer()
+
+    // when & then
+    request.default(httpServer)
       .get('/')
-      .expect(200)
-      .expect('Hello World!');
+      .expect(302);
+  });
+
+  it('should get "/players"', () => {
+    // given
+    const httpServer = app.getHttpServer()
+
+    // when & then
+    request.default(httpServer)
+      .get('/players')
+      .expect(200);
   });
 });
