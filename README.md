@@ -46,7 +46,7 @@ In this repo is a sample data file [`rushing.json`](/rushing.json).
 
 #### Introduction
 
-This solution was built using the NestJS framework.
+This solution was built using the NestJS framework. You can try the live version [here](https://nfl-rushing-stats.herokuapp.com/).
 
 #### Installation
 
